@@ -3,26 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Website</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>AGRI GUARD AI - Smart Agriculture Solutions</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="data.json"></script>
+
 </head>
-<body>
-    <header>
-        <h1>AGRI GUARD AI</h1>
+<body class="min-h-screen flex flex-col">
+    <header class="relative z-10 py-6 bg-gradient-to-r from-[#4CAF50] to-[#81C784] text-white">
+        <h1 class="text-4xl font-bold">AGRI GUARD AI</h1>
     </header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+
+    <nav class="navbar relative z-10 py-4 bg-gradient-to-r from-[#4CAF50] to-[#81C784]">
+    <script>
+        const apiKey = "e9c04e2fd68280b1360d47d3e3356550";
+        const lat = "13.5372"; // Latitude for Sri City, Andhra Pradesh, India
+        const lon = "79.9982"; // Longitude for Sri City, Andhra Pradesh, India
+
+
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&cnt=40&appid=${apiKey}`)
+            .then(response => response.json())
+            .then(data => {
+                const nav = document.querySelector('nav');
+                data.city.name; // Example usage of city name
+                data.list.forEach(item => {
+                    // Process and display weather data here
+                });
+            });
+    </script>
+
+
     </nav>
-    <div class="container">
-        <button class="button">Pest and Disease Prediction & Remedies</button>
-        <button class="button">Soil Data Analysis & Growth Optimization</button>
-        <button class="button">Weather Forecast</button>
-    </div>
-    <footer>
-        <p>Footer Content</p>
+
+    <main class="flex-grow py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-semibold mb-8">Smart Agriculture Solutions</h2>
+            <div class="flex justify-center gap-6 flex-wrap">
+        <div class="flex justify-center gap-6 flex-wrap">
+            <a href="weather.html" class="button bg-gradient-to-r from-[#007BFF] to-[#00BFFF] hover:from-[#0056b3] hover:to-[#0099cc] transform hover:scale-105 transition-all">Weather Forecasting</a>
+            <a href="#" class="button bg-gradient-to-r from-[#007BFF] to-[#00BFFF] hover:from-[#0056b3] hover:to-[#0099cc] transform hover:scale-105 transition-all">Pest Detection</a>
+            <a href="#" class="button bg-gradient-to-r from-[#007BFF] to-[#00BFFF] hover:from-[#0056b3] hover:to-[#0099cc] transform hover:scale-105 transition-all">Soil</a>
+
+            <!-- Weather data will be displayed here -->
+        </div>
+        <script>
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&cnt=40&appid=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    const forecastContainer = document.getElementById('weather-forecast');
+                    data.list.forEach(item => {
+                        const weatherCard = document.createElement('div');
+                        weatherCard.className = "weather-card"; // Add your styling class
+                        weatherCard.innerHTML = `
+                            <h3>${new Date(item.dt * 1000).toLocaleString()}</h3>
+                            <p>Temperature: ${item.main.temp} °C</p>
+                            <p>Weather: ${item.weather[0].description}</p>
+                        `;
+                        forecastContainer.appendChild(weatherCard);
+                    });
+                });
+        </script>
+
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-[#333] text-white py-4">
+        <div class="container mx-auto px-4">
+            <p>© 2025 AGRI GUARD AI - Smart Agriculture Solutions</p>
+        </div>
     </footer>
 </body>
 </html>

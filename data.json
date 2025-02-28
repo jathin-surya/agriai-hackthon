@@ -1,0 +1,46 @@
+{
+  "title": "AGRI GUARD AI - Smart Agriculture Solutions",
+  "description": "Advanced AI-powered solutions for modern agriculture",
+  "api": {
+    "endpoint": "https://api.openweathermap.org/data/2.5/forecast",
+    "key": "e9c04e2fd68280b1360d47d3e3356550",
+    "params": {
+      "lat": "YOUR_LATITUDE",
+      "lon": "YOUR_LONGITUDE",
+      "units": "metric",
+      "cnt": 40
+    }
+  },
+  "navigation": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "Weather",
+      "url": "/weather"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
+    }
+  ],
+  "buttons": [
+    {
+      "name": "Weather Forecast",
+      "url": "/weather"
+    },
+    {
+      "name": "Soil Analysis",
+      "url": "/soil"
+    },
+    {
+      "name": "Crop Recommendations",
+      "url": "/crops"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast - AGRI GUARD AI</title>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="relative z-10 py-6 bg-gradient-to-r from-[#4CAF50] to-[#81C784] text-white">
+        <h1 class="text-4xl font-bold">Weather Forecast</h1>
+    </header>
+
+    <main class="flex-grow py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-semibold mb-8">Weather Forecast Details</h2>
+            <div id="weather-forecast" class="flex justify-center gap-6 flex-wrap">
+                <!-- Weather data will be displayed here -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-[#333] text-white py-4">
+        <div class="container mx-auto px-4">
+            <p>© 2025 AGRI GUARD AI - Smart Agriculture Solutions</p>
+        </div>
+    </footer>
+
+    <script>
+        const apiKey = "e9c04e2fd68280b1360d47d3e3356550";
+        const lat = "13.5372"; // Latitude for Sri City, Andhra Pradesh, India
+        const lon = "79.9982"; // Longitude for Sri City, Andhra Pradesh, India
+
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&cnt=40&appid=${apiKey}`)
+            .then(response => response.json())
+            .then(data => {
+                const forecastContainer = document.getElementById('weather-forecast');
+                data.list.forEach(item => {
+                    const weatherCard = document.createElement('div');
+                    weatherCard.className = "weather-card"; // Add your styling class
+                    weatherCard.innerHTML = `
+                        <h3>${new Date(item.dt * 1000).toLocaleString()}</h3>
+                        <p>Temperature: ${item.main.temp} °C</p>
+                        <p>Weather: ${item.weather[0].description}</p>
+                    `;
+                    forecastContainer.appendChild(weatherCard);
+                });
+            });
+    </script>
+</body>
+</html>
